@@ -1,3 +1,7 @@
+import os 
+
+
+
 from flask import Flask  
 from flask_restful import Resource, Api   
 from flask_jwt import JWT  
@@ -10,7 +14,7 @@ from resources.store import Store, StoreList
 
 app = Flask(__name__) 
 app.secret_key = 'ebor' 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' #the sqlite database will be situated at the root folder of our project 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') #the sqlite database will be situated at the root folder of our project 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #To off flask sql alchemy behaviour while activating the usual SQLAlchemy modifications 
 api = Api(app)  #finding our api 
 
