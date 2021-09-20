@@ -19,9 +19,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #To off flask sql alchemy b
 api = Api(app)  #finding our api 
 
 
-@app.before_first_request
-def create_tables(): 
-    db.create_all()
+
 
 jwt = JWT(app, authenticate, identity) #/auth 
 
