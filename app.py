@@ -14,7 +14,7 @@ from resources.store import Store, StoreList
 
 app = Flask(__name__) 
 app.secret_key = 'ebor' 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('postgres://wjglvpct:eG19Yrew8LgE2xaI2Oq1mzdcCmUDeSdh@hansken.db.elephantsql.com/wjglvpct', 'sqlite:///data.db') #the sqlite database will be situated at the root folder of our project 
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI', 'sqlite:///data.db') #the sqlite database will be situated at the root folder of our project 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #To off flask sql alchemy behaviour while activating the usual SQLAlchemy modifications 
 api = Api(app)  #finding our api 
 
