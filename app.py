@@ -1,7 +1,6 @@
 import os 
 
 
-
 from flask import Flask  
 from flask_restful import Resource, Api   
 from flask_jwt import JWT  
@@ -20,6 +19,10 @@ api = Api(app)  #finding our api
 
 
 
+@app.before_first_request
+def create_tables(): 
+    db.create_all() 
+
 
 jwt = JWT(app, authenticate, identity) #/auth 
 
@@ -32,12 +35,13 @@ api.add_resource(UserRegister, '/register')
 api.add_resource(StoreList, '/store')
 
 
-from db import db    #
+from db import db    
 db.init_app(app)
 
 
 if __name__ == '__main__': 
     app.run(port=5000, debug=True)
+
 
 
 
